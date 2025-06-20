@@ -1,0 +1,41 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="MauiTecmicProject.MainPage"
+             Title="Registo">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Nome:" />
+            <Entry x:Name="nameEntry" Placeholder="Escreve o teu nome" AutomationId="nameEntry" />
+
+            <Label Text="Email:" />
+            <Entry x:Name="emailEntry" Placeholder="Escreve o teu email" Keyboard="Email" AutomationId="emailEntry" />
+
+            <Label Text="Confirmar Email:" />
+            <Entry x:Name="confirmEmailEntry" Placeholder="Confirma o teu email" Keyboard="Email" AutomationId="confirmEmailEntry" />
+
+            <Label Text="Palavra-passe:" />
+            <Entry x:Name="passwordEntry" Placeholder="Escreve a palavra-passe" IsPassword="True" AutomationId="passwordEntry" />
+
+            <Label Text="Data de nascimento:" />
+            <DatePicker x:Name="birthDatePicker" MaximumDate="{x:Static sys:DateTime.UnixEpoch}" AutomationId="birthDatePicker" />
+
+            <Label Text="Sexo:" />
+            <Picker x:Name="genderPicker" Title="Seleciona o sexo" AutomationId="genderPicker">
+                <Picker.Items>
+                    <x:String>Masculino</x:String>
+                    <x:String>Feminino</x:String>
+                    <x:String>Outro</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button Text="Registar" Clicked="OnRegisterClicked" AutomationId="registerButton"/>
+
+            <Label x:Name="resultLabel" FontAttributes="Bold" AutomationId="resultLabel" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
