@@ -10,6 +10,7 @@ obj/
 .vscode/
 *.user
 *.suo
+*.vs
 
 # MAUI 
 Platforms/Android/obj/
