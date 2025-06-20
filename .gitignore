@@ -1,0 +1,23 @@
+# build
+bin/
+obj/
+*.apk
+*.apks
+*.exe
+*.dll
+
+# ide
+.vscode/
+*.user
+*.suo
+
+# MAUI 
+Platforms/Android/obj/
+Platforms/iOS/obj/
+Platforms/Windows/obj/
+
+# Other
+**/Debug/
+**/Release/
+*.zip
+*.log
