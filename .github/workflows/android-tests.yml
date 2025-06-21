@@ -20,26 +20,30 @@ jobs:
       - name: Descompactar APK
         run: unzip -o artifacts/MauiTecmicProject.zip -d artifacts/
 
-      - name: Configurar e Iniciar Emulador Android
+      - name: Iniciar Emulador Android (Headless)
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           target: google_apis
           arch: x86_64
           profile: pixel
-          emulator-options: -no-snapshot -no-boot-anim -no-window -no-audio -no-metrics
+          emulator-options: -no-window -no-audio -gpu swiftshader_indirect -accel off
           script: |
-            echo "A aguardar que o emulador inicie completamente..."
+            echo "⏳ A aguardar que o emulador inicie..."
+            adb wait-for-device
+
             timeout=180
-            elapsed=0
             until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
+              echo "⏲️ Ainda a iniciar..."
               sleep 5
-              elapsed=$((elapsed + 5))
-              if [ "$elapsed" -ge "$timeout" ]; then
-                echo "❌ Timeout: O emulador não ficou pronto após $timeout segundos."
+              timeout=$((timeout - 5))
+              if [ "$timeout" -le 0 ]; then
+                echo "❌ Timeout ao esperar o boot do emulador."
+                adb logcat -d | tail -n 50
                 exit 1
               fi
             done
+
             echo "✅ Emulador pronto!"
             adb shell input keyevent 82
             adb install artifacts/MauiTecmicProject.apk
@@ -49,7 +53,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Instalar Appium e dependências JS
+      - name: Instalar Appium e dependências
         run: |
           npm ci || npm install
           npm install -g appium
