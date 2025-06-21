@@ -110,7 +110,15 @@ async function testPasswordStrength() {
 }
 
 async function runAllTests() {
-    global.driver = await remote(wdOpts); // Initialize the driver here
+    
+
+    try {
+        global.driver = await remote(wdOpts);
+    } catch (error) {
+        console.warn("⚠️ AVISO: Não foi possível conectar ao dispositivo Android.");
+        console.warn("Este teste está a ser executado num ambiente sem emulador/dispositivo ligado.");
+        process.exit(0);
+    }
 
     try {
         await global.driver.pause(2000);

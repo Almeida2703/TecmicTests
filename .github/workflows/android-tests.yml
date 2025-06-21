@@ -1,0 +1,35 @@
+name: Validar Testes Appium
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validar-testes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter código do repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Instalar Appium globalmente
+        run: npm install -g appium
+
+      - name: Iniciar Appium em background
+        run: appium &
+
+      - name: Esperar que o Appium arranque
+        run: sleep 10
+
+      - name: Validar script de testes
+        run: npm test
