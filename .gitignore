@@ -22,3 +22,7 @@ Platforms/Windows/obj/
 **/Release/
 *.zip
 *.log
+
+# Node.js
+node_modules/
+package-lock.json
