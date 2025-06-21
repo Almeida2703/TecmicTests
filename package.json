@@ -1,14 +1,13 @@
-
-    {
-        "name": "maui-tecmic-tests",
-        "version": "1.0.0",
-        "description": "Testes Appium para aplicação MAUI",
-        "main": "tests/Tests.js",
-        "scripts": {
-            "test": "node tests/Tests.js"
-        },
-        "dependencies": {
-            "webdriverio": "^8.30.2"
-        },
-        "devDependencies": {}
+{
+    "name": "maui-tecmic-tests",
+    "version": "1.0.0",
+    "description": "Testes Appium para aplicação MAUI",
+    "main": "tests/Tests.js",
+    "scripts": {
+        "test": "node tests/Tests.js"
+    },
+    "type": "module",
+    "dependencies": {
+        "webdriverio": "^8.30.2"
     }
+}
