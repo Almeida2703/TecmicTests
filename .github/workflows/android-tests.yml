@@ -29,9 +29,22 @@ jobs:
           profile: pixel
           script: |
             echo "Iniciar emulador Android"
-            adb devices
-            adb install artifacts/MauiTecmicProject.apk
+            echo "A aguardar que o emulador inicie completamente..."
+            timeout=120
+            elapsed=0
+            until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
+              sleep 5
+              elapsed=$((elapsed + 5))
+              if [ "$elapsed" -ge "$timeout" ]; then
+                echo "❌ Timeout: O emulador não ficou pronto após $timeout segundos."
+                exit 1
+              fi
+            done
+
+            echo "✅ Emulador pronto!"
             adb shell input keyevent 82
+                        adb install artifacts/MauiTecmicProject.apk
+                        adb shell input keyevent 82
 
       - name: Instalar Node.js
         uses: actions/setup-node@v3
