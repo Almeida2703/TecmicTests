@@ -64,6 +64,5 @@ public partial class MainPage : ContentPage
 
         resultLabel.TextColor = Colors.Green;
         resultLabel.Text = $"Utilizador {name} registado com sucesso!\nSexo: {gender}\nData de nascimento: {birthDate:d}";
-        // Aqui poderias guardar os dados, enviar para API, etc.
     }
 }
