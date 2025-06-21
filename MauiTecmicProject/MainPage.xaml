@@ -13,7 +13,7 @@
             <Label Text="Email:" />
             <Entry x:Name="emailEntry" Placeholder="Escreve o teu email" Keyboard="Email" AutomationId="emailEntry" />
 
-            <Label Text="Confirmar Email:" />
+            <Label Text="Confirmar Emails:" />
             <Entry x:Name="confirmEmailEntry" Placeholder="Confirma o teu email" Keyboard="Email" AutomationId="confirmEmailEntry" />
 
             <Label Text="Palavra-passe:" />
