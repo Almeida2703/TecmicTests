@@ -1,70 +1,29 @@
-name: Testes com Appium + Emulador Android
+name: Executar Tests.js (sem emulador)
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'artifacts/**'
       - 'tests/**'
-      - '.github/workflows/**'
       - 'package.json'
+      - '.github/workflows/**'
 
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v3
 
-      - name: Descompactar APK
-        run: unzip -o artifacts/MauiTecmicProject.zip -d artifacts/
-
-      - name: Iniciar Emulador Android (Headless)
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          target: google_apis
-          arch: x86_64
-          profile: pixel
-          emulator-options: -no-window -no-audio -gpu swiftshader_indirect -accel off
-          script: |
-            echo "⏳ A aguardar que o emulador inicie..."
-            adb wait-for-device
-
-            timeout=180
-            until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
-              echo "⏲️ Ainda a iniciar..."
-              sleep 5
-              timeout=$((timeout - 5))
-              if [ "$timeout" -le 0 ]; then
-                echo "❌ Timeout ao esperar o boot do emulador."
-                adb logcat -d | tail -n 50
-                exit 1
-              fi
-            done
-
-            echo "✅ Emulador pronto!"
-            adb shell input keyevent 82
-            adb install artifacts/MauiTecmicProject.apk
-
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Instalar Appium e dependências
+      - name: Instalar dependências
         run: |
           npm ci || npm install
-          npm install -g appium
-          appium driver install uiautomator2
 
-      - name: Iniciar Appium em background
-        run: |
-          nohup appium --log-level error & sleep 10
-
-      - name: Verificar se o APK está instalado
-        run: adb shell pm list packages | grep com.companyname.mauitecmicproject
-
-      - name: Executar testes com WebDriverIO
+      - name: Executar Tests.js
         run: node tests/Tests.js
