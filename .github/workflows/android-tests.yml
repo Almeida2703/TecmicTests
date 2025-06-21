@@ -2,11 +2,9 @@ name: Testar APK com Appium
 
 on:
   push:
-    paths:
-      - 'artifacts/MauiTecmicProject.zip'
-      - 'tests/**'
-      - '.github/workflows/**'
-  workflow_dispatch:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
