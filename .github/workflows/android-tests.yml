@@ -20,17 +20,17 @@ jobs:
       - name: Descompactar APK
         run: unzip -o artifacts/MauiTecmicProject.zip -d artifacts/
 
-      - name: Configurar Java e Android SDK + Emulador
+      - name: Configurar e Iniciar Emulador Android
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           target: google_apis
           arch: x86_64
           profile: pixel
+          emulator-options: -no-snapshot -no-boot-anim -no-window -no-audio -no-metrics
           script: |
-            echo "Iniciar emulador Android"
             echo "A aguardar que o emulador inicie completamente..."
-            timeout=120
+            timeout=180
             elapsed=0
             until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
               sleep 5
@@ -43,7 +43,6 @@ jobs:
             echo "✅ Emulador pronto!"
             adb shell input keyevent 82
             adb install artifacts/MauiTecmicProject.apk
-            
 
       - name: Instalar Node.js
         uses: actions/setup-node@v3
@@ -58,13 +57,10 @@ jobs:
 
       - name: Iniciar Appium em background
         run: |
-          nohup appium --log-level error &
-          sleep 10
+          nohup appium --log-level error & sleep 10
 
-      - name: Verificar APK instalado
+      - name: Verificar se o APK está instalado
         run: adb shell pm list packages | grep com.companyname.mauitecmicproject
 
       - name: Executar testes com WebDriverIO
-        run: npm tests/test
-
-
+        run: node tests/Tests.js
