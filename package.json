@@ -1,15 +1,14 @@
 {
-  "name": "maui-automation-tests",
-  "version": "1.0.0",
-  "description": "Testes automatizados Appium para app .NET MAUI",
-  "main": "tests/Tests.js",
-  "scripts": {
-    "test": "node tests/Tests.js"
-  },
-  "dependencies": {
-    "appium": "^2.3.0",
-    "webdriverio": "^8.27.0"
-  },
-  "author": "Tiago Camacho Almeida",
-  "license": "MIT"
-}
+    {
+        "name": "maui-tecmic-tests",
+        "version": "1.0.0",
+        "description": "Testes Appium para aplicação MAUI",
+        "main": "tests/Tests.js",
+        "scripts": {
+            "test": "node tests/Tests.js"
+        },
+        "dependencies": {
+            "webdriverio": "^8.30.2"
+        },
+        "devDependencies": {}
+    }
