@@ -6,7 +6,6 @@
     "scripts": {
         "test": "node tests/Tests.js"
     },
-    "type": "module",
     "dependencies": {
         "webdriverio": "^8.30.2"
     }
