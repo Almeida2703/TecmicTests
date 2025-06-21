@@ -1,7 +1,6 @@
 # build
 bin/
 obj/
-*.apk
 *.apks
 *.exe
 *.dll
@@ -20,7 +19,7 @@ Platforms/Windows/obj/
 # Other
 **/Debug/
 **/Release/
-*.zip
+
 *.log
 
 # Node.js
