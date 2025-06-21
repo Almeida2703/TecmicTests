@@ -1,29 +1,46 @@
-name: Executar Tests.js (sem emulador)
+name: Testar APK com Appium
 
 on:
-  workflow_dispatch:
   push:
     paths:
+      - 'artifacts/MauiTecmicProject.zip'
       - 'tests/**'
-      - 'package.json'
       - '.github/workflows/**'
+  workflow_dispatch:
 
 jobs:
-  run-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v3
 
+      - name: Instalar unzip
+        run: sudo apt-get update && sudo apt-get install -y unzip
+
+      - name: Descomprimir APK
+        run: unzip artifacts/MauiTecmicProject.zip -d artifacts/
+
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Instalar dependências
-        run: |
-          npm ci || npm install
+      - name: Instalar dependências NPM
+        run: npm install
 
-      - name: Executar Tests.js
+      - name: Instalar Appium
+        run: |
+          npm install -g appium
+          appium -v
+      - name: Iniciar Appium em background
+        run: |
+          nohup appium --log-level error &
+          sleep 10
+      - name: Verificar conteúdo extraído
+        run: ls -lh artifacts/
+
+      # Aqui é onde os testes são corridos
+      - name: Executar testes com WebDriverIO
         run: node tests/Tests.js
