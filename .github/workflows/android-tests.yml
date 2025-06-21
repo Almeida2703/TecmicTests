@@ -40,11 +40,10 @@ jobs:
                 exit 1
               fi
             done
-
             echo "✅ Emulador pronto!"
             adb shell input keyevent 82
-                        adb install artifacts/MauiTecmicProject.apk
-                        adb shell input keyevent 82
+            adb install artifacts/MauiTecmicProject.apk
+            
 
       - name: Instalar Node.js
         uses: actions/setup-node@v3
