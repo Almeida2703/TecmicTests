@@ -1,12 +1,13 @@
-name: Testar APK com Appium
+name: Testes com Appium + Emulador Android
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - 'artifacts/MauiTecmicProject.zip'
+      - 'artifacts/**'
       - 'tests/**'
       - '.github/workflows/**'
-  workflow_dispatch:
+      - 'package.json'
 
 jobs:
   test:
@@ -16,33 +17,42 @@ jobs:
       - name: Clonar repositório
         uses: actions/checkout@v3
 
-      - name: Instalar unzip
-        run: sudo apt-get update && sudo apt-get install -y unzip
+      - name: Descompactar APK
+        run: unzip -o artifacts/MauiTecmicProject.zip -d artifacts/
 
-      - name: Descomprimir APK
-        run: unzip artifacts/MauiTecmicProject.zip -d artifacts/
+      - name: Configurar Java e Android SDK + Emulador
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel
+          script: |
+            echo "Iniciar emulador Android"
+            adb devices
+            adb install artifacts/MauiTecmicProject.apk
+            adb shell input keyevent 82
 
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Instalar dependências NPM
-        run: npm install
-
-      - name: Instalar Appium
+      - name: Instalar Appium e dependências JS
         run: |
+          npm ci || npm install
           npm install -g appium
-          appium -v
+          appium driver install uiautomator2
 
       - name: Iniciar Appium em background
         run: |
           nohup appium --log-level error &
           sleep 10
 
-      - name: Verificar conteúdo extraído
-        run: ls -lh artifacts/
+      - name: Verificar APK instalado
+        run: adb shell pm list packages | grep com.companyname.mauitecmicproject
 
-      # Aqui é onde os testes são corridos
       - name: Executar testes com WebDriverIO
-        run: node tests/Tests.js
+        run: npm tests/test
+
+
