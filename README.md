@@ -34,26 +34,5 @@ MauiTecmicProject/
 │   └── ...
 ├── README.md                 # Este ficheiro
 └── .gitignore                # Ficheiros e pastas ignoradas
-```
-
----
-
-## 🛠 Como Correr o Projeto Localmente
-
-1. Instala o [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Garante que tens o [Android SDK e emuladores configurados](https://learn.microsoft.com/en-us/dotnet/maui/android/emulator) no Visual Studio
-3. Clona o repositório:
-   ```bash
-   git clone https://github.com/teu-utilizador/MauiTecmicProject.git
-   ```
-4. Abre o projeto no Visual Studio Comunity (com suporte para MAUI)
-5. Inicializar o appium.
-5. Seleciona um emulador e executa a aplicação
-
----
-
-## ✅ Estado do DevOps (CI/CD)
-
-> ⚠️ O pipeline de CI/CD com Azure DevOps **ainda não está configurado**.
 
 
