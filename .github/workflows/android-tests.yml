@@ -39,6 +39,6 @@ jobs:
       - name: Verificar conteúdo extraído
         run: ls -lh artifacts/
 
-      # Aqui é onde os testes são corridos
+
       - name: Executar testes com WebDriverIO
         run: node tests/Tests.js
