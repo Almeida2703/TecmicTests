@@ -34,5 +34,26 @@ MauiTecmicProject/
 │   └── ...
 ├── README.md                 # Este ficheiro
 └── .gitignore                # Ficheiros e pastas ignoradas
+```
+
+## 🚀 Quick Guide: Como Correr os Testes Localmente
+
+Para executar os testes automatizados com Appium no seu ambiente local, siga os seguintes passos:
+
+### 1. Instale as dependências necessárias
+
+Certifique-se de que tem o [Node.js](https://nodejs.org/) instalado. Depois, na pasta do projeto onde está o ficheiro `Tests.js`, instale as dependências necessárias:
+
+```
+npm install
+npm install -g appium
+npx appium
+```
+Numa nova janela de terminal
+
+```
+node Tests.js
+```
+
 
 
