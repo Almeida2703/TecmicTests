@@ -1,6 +1,6 @@
 #  MauiTecmicProject
 
-Este repositório contém o projeto **MauiTecmicProject**, uma simples aplicação em forma de um formulario simples desenvolvida com .NET MAUI . O projeto inclui também uma estrutura preparada para testes automatizados com Appium , pronto para uma futura integração com pipelines de CI/CD usando Azure DevOps.
+Este repositório contém o projeto **MauiTecmicProject**, uma simples aplicação em forma de um formulario simples desenvolvida com .NET MAUI . O projeto inclui também uma estrutura preparada para testes automatizados com Appium , pronto para uma futura integração com pipelines de CI/CD usando Azure DevOps
 
 ---
 
