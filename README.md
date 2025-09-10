@@ -1,55 +1,68 @@
+
+
+
 #  MauiTecmicProject
 
-Este repositório contém o projeto **MauiTecmicProject**, uma simples aplicação em forma de um formulario simples desenvolvida com .NET MAUI . O projeto inclui também uma estrutura preparada para testes automatizados com Appium , pronto para uma futura integração com pipelines de CI/CD usando Azure DevOps
+This repository contains the **MauiTecmicProject**, a simple form-based application developed with .NET MAUI. The project also includes a structure prepared for automated testing with Appium, ready for future integration into CI/CD pipelines using Azure DevOps.
+
+## Project Context
+
+This project was developed as part of a **real company project**. The goal was to explore the use of a **new automated testing tool**, evaluating its integration with .NET MAUI applications and the potential for automating tests in continuous integration environments.
+
 
 ---
 
-## 🧪 Testes Automatizados
+## 🧪 Automated Tests
 
-- Os testes são escritos com **Appium** para Android.
-- O objetivo é validar o comportamento da app em dispositivos móveis ou emuladores.
-- Os testes encontram-se no ficheiro `/Tests` .
-- O projeto ainda **não está integrado num serviço de testes na cloud**, por isso os testes são executados localmente com emuladores Android ou dispositivos reais.
-
----
-
-## 🔧 Tecnologias Utilizadas
-
-- [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-- [MAUI](https://learn.microsoft.com/en-us/dotnet/maui/)
-- [Appium](https://appium.io/)
-- Android SDK e emuladores (local)
-- GitHub (repositório principal)
+- Tests are written with **Appium** for Android.  
+- The goal is to validate the app’s behavior on mobile devices or emulators.  
+- Tests are located in the `/Tests` file.  
+- The project is **not yet integrated into a cloud testing service**, so tests are executed locally with Android emulators or real devices.  
 
 ---
 
-## 📂 Estrutura do Projeto
+## 🔧Technologies Used
+
+- [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)  
+- [MAUI](https://learn.microsoft.com/en-us/dotnet/maui/)  
+- [Appium](https://appium.io/)  
+- Android SDK and emulators (local)  
+- GitHub (main repository)  
+---
+
+## 📂 Project Structure
 
 ```
 MauiTecmicProject/
-├── MauiTecmicProject/        # Projeto principal MAUI           
-│   └── MainPage.xaml         # Interface principal da aplicação (UI) 
-│   ├── MainPage.xaml.cs      # Lógica associada à MainPage (code-behind)                   
-│   ├── Tests.js              # Testes de exemplo
-│   └── ...
-├── README.md                 # Este ficheiro
-└── .gitignore                # Ficheiros e pastas ignoradas
+├── MauiTecmicProject/ # Main MAUI project
+│ └── MainPage.xaml # Main application interface (UI)
+│ ├── MainPage.xaml.cs # Logic associated with MainPage (code-behind)
+│ ├── Tests.js # Example tests
+│ └── ...
+├── README.md # This file
+└── .gitignore # Ignored files and folders
 ```
 
-## 🚀 Quick Guide: Como Correr os Testes Localmente
 
-Para executar os testes automatizados com Appium no seu ambiente local, siga os seguintes passos:
+---
 
-### 1. Instale as dependências necessárias
+## 🚀 Quick Guide: Running Tests Locally
 
-Certifique-se de que tem o [Node.js](https://nodejs.org/) instalado. Depois, na pasta do projeto onde está o ficheiro `Tests.js`, instale as dependências necessárias:
+To run the automated tests with Appium in your local environment, follow these steps:
+
+### 1. Install the required dependencies
+
+Make sure you have [Node.js](https://nodejs.org/) installed.  
+Then, in the project folder where the `Tests.js` file is located, install the required dependencies:
+
+
 
 ```
 npm install
 npm install -g appium
 npx appium
 ```
-Numa nova janela de terminal
+In a new terminal window:
 
 ```
 node Tests.js
